@@ -12,11 +12,14 @@ sub do
 {
     my $file = $_;
     if ($file =~ /.*\.(java|c)$/){
-        #open file
+
         my $year = (localtime)[5] + 1900;
         open (current_file, $file) or die "Error opening $file";
         open (tmp_file,">","$file.tmp") or die "Error opening $file";
+        print "$file\n";
+
         while (<current_file>){
+
             my $line =$_;
             if ($line =~ /Copyright.*?aicas GmbH/){
                 $line =~ /(19\d\d|20\d\d)/;
