@@ -13,6 +13,10 @@ sub do
     my $file = $_;
     my $year = (localtime)[5] + 1900;
     local $/ = undef;
+
+    my copyright_java_files = "\/\*------------------------------------------------------------------------\*\n \* Copyright $replace, aicas GmbH; all rights reserved.\n \* This header, including copyright notice, may not be altered or removed.\n \*------------------------------------------------------------------------\*\/\n\n";
+    my copyright_c_files    = "\/\***********************************************************************\*\n \* Copyright $replace, aicas GmbH; all rights reserved.\n \* This header, including copyright notice, may not be altered or removed.\n \***********************************************************************\*\/\n\n";
+
     if ($file =~ /.*\.(java|c)$/){
 
         open (current_file, $file) or die "Error opening $file";
@@ -32,13 +36,13 @@ sub do
             }
             if ($file =~ /.*\.java$/){
                 if ($file_as_string !~ /(\/\*.*Copyright.*rights reserved.*\*\/)/is){
-                    $file_as_string = "\/\*------------------------------------------------------------------------\*\n \* Copyright $replace, aicas GmbH; all rights reserved.\n \* This header, including copyright notice, may not be altered or removed.\n \*------------------------------------------------------------------------\*\/\n\n" . $file_as_string;
+                    $file_as_string = $copyright_java_files . $file_as_string;
                 }else {
                     $file_as_string =~ s/(\/\*.*Copyright.*rights reserved.*?\*\/)/$1\n\n\/\*------------------------------------------------------------------------\*\n \* Copyright $replace, aicas GmbH; all rights reserved.\n \* This header, including copyright notice, may not be altered or removed.\n \*------------------------------------------------------------------------\*\//is;
                 }
             }elsif ($file =~ /.*\.(c)$/){
             	if ($file_as_string !~ /(\/\*.*Copyright.*rights reserved.*\*\/)/is){
-                    $file_as_string = "\/\***********************************************************************\*\n \* Copyright $replace, aicas GmbH; all rights reserved.\n \* This header, including copyright notice, may not be altered or removed.\n \***********************************************************************\*\/\n\n" . $file_as_string;
+                    $file_as_string = $copyright_c_files . $file_as_string;
                 }else {
                     $file_as_string =~ s/(\/\*.*Copyright.*rights reserved.*?\*\/)/$1\n\n\/\***********************************************************************\*\n \* Copyright $replace, aicas GmbH; all rights reserved.\n \* This header, including copyright notice, may not be altered or removed.\n \***********************************************************************\*\//is;
                 }
@@ -48,7 +52,7 @@ sub do
             close tmp_file;
             rename("$file.tmp", $file);
 
-        }elsif ($file_as_string  =~ /(\/\*.*?\d{4}.*?aicas GmbH.*?\*\/)/s && $file_as_string !~ /(Oracle|Free Software Foundation|Sun Microsystems|Apache|Thomas G)/){
+        }elsif ($file_as_string  =~ /(\/\*.*?\d{4}.*?aicas GmbH.*?\*\/)/s && $file_as_string !~ /(Acunia|Oracle|Free Software Foundation|Sun Microsystems|Apache|Thomas G)/){
 
             open (tmp_file,">","$file.tmp") or die "Error opening $file";
             print "$file\n";
@@ -69,7 +73,7 @@ sub do
             close tmp_file;
             rename("$file.tmp", $file);
 
-        }elsif ($file_as_string  =~ /(\/\*.*?\\.*?aicas GmbH.*?\*\/)/s  && $file_as_string !~ /(Oracle|Free Software Foundation|Sun Microsystems|Apache|Thomas G)/){
+        }elsif ($file_as_string  =~ /(\/\*.*?\\.*?aicas GmbH.*?\*\/)/s  && $file_as_string !~ /(Acunia|Oracle|Free Software Foundation|Sun Microsystems|Apache|Thomas G)/){
 
             open (tmp_file,">","$file.tmp") or die "Error opening $file";
             print "$file\n";
@@ -89,6 +93,7 @@ sub do
             print tmp_file $file_as_string;
             close tmp_file;
             rename("$file.tmp", $file);
+
         }
     }
 }
