@@ -19,7 +19,7 @@ sub do
         my $file_as_string = <current_file>;
         close current_file;
 
-        if ($file_as_string  !~ /aicas GmbH/){#adding missing headers
+        if ($file_as_string  !~ /aicas GmbH/){
 
             open (tmp_file,">","$file.tmp") or die "Error opening $file";
             print "$file\n";
