@@ -41,7 +41,7 @@ sub do
             }
             if ($file =~ /.*\.java$/){
                 $file_as_string =~ s/(\/\*.{0,150}aicas GmbH.*?\*\/)/\/\*------------------------------------------------------------------------\*\n \* Copyright $replace, aicas GmbH; all rights reserved.\n \* This header, including copyright notice, may not be altered or removed.\n \*------------------------------------------------------------------------\*\//s;
-            }elsif ($file =~ /.*\.(c)$/){
+            }elsif ($file =~ /.*\.c$/){
                 $file_as_string =~ s/(\/\*.{0,150}aicas GmbH.*?\*\/)/\/\***********************************************************************\*\n \* Copyright $replace, aicas GmbH; all rights reserved.\n \* This header, including copyright notice, may not be altered or removed.\n \***********************************************************************\*\//s;
             }
 

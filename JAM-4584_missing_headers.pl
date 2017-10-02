@@ -36,7 +36,7 @@ sub do
                 }else {
                     $file_as_string =~ s/(\/\*.*Copyright.*rights reserved.*?\*\/)/$1\n\n\/\*------------------------------------------------------------------------\*\n \* Copyright $replace, aicas GmbH; all rights reserved.\n \* This header, including copyright notice, may not be altered or removed.\n \*------------------------------------------------------------------------\*\//is;
                 }
-            }elsif ($file =~ /.*\.(c)$/){
+            }elsif ($file =~ /.*\.c$/){
                 if ($file_as_string !~ /(\/\*.*Copyright.*rights reserved.*\*\/)/is){
                     $file_as_string = "\/\***********************************************************************\*\n \* Copyright $replace, aicas GmbH; all rights reserved.\n \* This header, including copyright notice, may not be altered or removed.\n \***********************************************************************\*\/\n\n" . $file_as_string;
                 }else {
