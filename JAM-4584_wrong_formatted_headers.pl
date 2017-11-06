@@ -29,7 +29,7 @@ sub do
                 my $tmp_string = $1;
                 $tmp_string =~ /(\d{4})/;
                 $first_commit_date = $1;
-            }else{
+            }else {
             	my @split = split(/-/, qx(hg log -l1 -r 0:tip --template "{date|isodate}" $file));
                 $first_commit_date = $split[0];
             }

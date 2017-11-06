@@ -25,10 +25,10 @@ sub do
                 $line =~ /(19\d\d|20\d\d)/;
                 if ($1 && $1 eq $year){
                     print tmp_file " * Copyright $year, aicas GmbH; all rights reserved.\n";
-                }else{
+                }else {
                     print tmp_file " * Copyright $1-$year, aicas GmbH; all rights reserved.\n";
                 }
-            }else{
+            }else {
                 print tmp_file $line;
             }
         }
