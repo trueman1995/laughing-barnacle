@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use File::Find;
 
-my $dir = "/local/armbruster/hg/Jamaica-8/jamaica";
+my $dir = shift or die "Usage: $0 ABSOLUTE_PATH_TO_DIRECTORY\n";
 
 find(\&do, $dir);
 
