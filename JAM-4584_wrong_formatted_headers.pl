@@ -12,7 +12,7 @@ use warnings;
 use File::Find;
 
 #take absolute path to directory as commandline argument or throw error and quit
-my $dir = shift or die "Usage: $0 ABSOLUTE_PATH_TO_DIRECTORY\n";
+my $dir = shift or die "\[CRHeader\] Usage: $0 ABSOLUTE_PATH_TO_DIRECTORY\n";
 my $counter = 0;
 
 find(\&do, $dir);
