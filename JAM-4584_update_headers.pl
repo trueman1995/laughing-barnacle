@@ -1,10 +1,17 @@
 #!/usr/bin/perl -w
 
+# Copyright 2017, aicas GmbH, all rights reserved
+# author Felix Armbruster felix.armbruster@aicas.com
+
+# Updates existing copyright headers to current year (only works for those files with header of correct form, but outdated year)
+# If you want to correct existing copyright headers to correct form, or want to add missing headers, see other scripts in this directory
+# For further information regarding copyright headers see https://wiki.aicas.burg/wiki/index.php/Source_Code_Guidelines
+
 use strict;
 use warnings;
 use File::Find;
 
-#take absolute path to directory as commandline argument or throw error and quit'
+#take absolute path to directory as commandline argument or throw error and quit
 my $dir = shift or die "\[CRHeader\] Usage: $0 ABSOLUTE_PATH_TO_DIRECTORY\n";
 my $counter = 0;
 
@@ -33,7 +40,7 @@ sub do
                     print "\[CRHeader\] updating $file\n";
                     $counter++;
                     print tmp_file " * Copyright $year, aicas GmbH; all rights reserved.\n";
-                }else{
+                }else {
                     print "\[CRHeader\] updating $file\n";
                     $counter++;
                     print tmp_file " * Copyright $1-$year, aicas GmbH; all rights reserved.\n";
