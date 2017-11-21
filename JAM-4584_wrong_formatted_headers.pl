@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 
 # Copyright 2017, aicas GmbH, all rights reserved
-# author Felix Armbruster felix.armbruster@aicas.com
+# author Felix Armbruster - felix.armbruster@aicas.com
 
 # Updates existing copyright headers to correct year and form 
 # If you only want to update existing copyright headers to correct year, or want to add missing headers, see other scripts in this directory
@@ -25,7 +25,7 @@ sub do
     my $year = (localtime)[5] + 1900;
     local $/ = undef;
     if ($file =~ /.*\.(java|c)$/){
-
+        #open file and read it
         open (current_file, $file) or die "Error opening $file";
         my $file_as_string = <current_file>;
         close current_file;
@@ -41,6 +41,7 @@ sub do
                 $tmp_string =~ /(\d{4})/;
                 $first_commit_date = $1;
             }else {
+                #getting the first commit date from mercurial (very slow, might take long for a large amount of files)
             	my @split = split(/-/, qx(hg log -l1 -r 0:tip --template "{date|isodate}" $file));
                 $first_commit_date = $split[0];
             }
@@ -55,7 +56,7 @@ sub do
             }elsif ($file =~ /.*\.c$/){
                 $file_as_string =~ s/(\/\*.{0,150}aicas GmbH.*?\*\/)/\/\***********************************************************************\*\n \* Copyright $replace, aicas GmbH; all rights reserved.\n \* This header, including copyright notice, may not be altered or removed.\n \***********************************************************************\*\//s;
             }
-
+            #closing, printing and replacing updated file
             print "\[CRHeader\] updating $file\n";
             print tmp_file $file_as_string;
             close tmp_file;

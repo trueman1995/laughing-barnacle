@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 
 # Copyright 2017, aicas GmbH, all rights reserved
-# author Felix Armbruster felix.armbruster@aicas.com
+# author Felix Armbruster - felix.armbruster@aicas.com
 
 # Updates existing copyright headers to current year (only works for those files with header of correct form, but outdated year)
 # If you want to correct existing copyright headers to correct form, or want to add missing headers, see other scripts in this directory
