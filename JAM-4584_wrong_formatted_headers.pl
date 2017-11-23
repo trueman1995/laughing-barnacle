@@ -17,14 +17,14 @@ my $counter = 0;
 
 find(\&do, $dir);
 
-print "\[CRHeader\] updated $counter files";
+print "\[CRHeader\] updated $counter files\n";
 
 sub do
 {
     my $file = $_;
     my $year = (localtime)[5] + 1900;
     local $/ = undef;
-    if ($file =~ /.*\.(java|c)$/){
+    if ($file =~ /.*\.(h)$/){
         #open file and read it
         open (current_file, $file) or die "Error opening $file";
         my $file_as_string = <current_file>;
@@ -53,7 +53,7 @@ sub do
             }
             if ($file =~ /.*\.java$/){
                 $file_as_string =~ s/(\/\*.{0,150}aicas GmbH.*?\*\/)/\/\*------------------------------------------------------------------------\*\n \* Copyright $replace, aicas GmbH; all rights reserved.\n \* This header, including copyright notice, may not be altered or removed.\n \*------------------------------------------------------------------------\*\//s;
-            }elsif ($file =~ /.*\.c$/){
+            }elsif ($file =~ /.*\.h$/){
                 $file_as_string =~ s/(\/\*.{0,150}aicas GmbH.*?\*\/)/\/\***********************************************************************\*\n \* Copyright $replace, aicas GmbH; all rights reserved.\n \* This header, including copyright notice, may not be altered or removed.\n \***********************************************************************\*\//s;
             }
             #closing, printing and replacing updated file

@@ -17,12 +17,12 @@ my $counter = 0;
 
 find(\&do, $dir);
 
-print "\[CRHeader\] updated $counter files";
+print "\[CRHeader\] updated $counter files\n";
 
 sub do
 {
     my $file = $_;
-    if ($file =~ /.*\.(java|c)$/){
+    if ($file =~ /.*\.(h)$/){
 
         my $year = (localtime)[5] + 1900;
         #open file and file.tmp or throw error and quit
