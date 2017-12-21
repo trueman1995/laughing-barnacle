@@ -1,4 +1,4 @@
 #!/bin/bash
 
 make clean
-make -j 9
+make -j 12
